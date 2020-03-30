@@ -7,7 +7,7 @@ import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-abstract class BaseViewHolder<T>(itemView: View): RecyclerView.ViewHolder(itemView){
+abstract class BaseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     @SuppressLint("UseSparseArrays")
     private val viewHashMap: MutableMap<Int, View?> = HashMap()
 

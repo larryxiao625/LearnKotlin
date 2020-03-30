@@ -18,7 +18,7 @@ class HttpClient : OkHttpClient() {
         return gson.fromJson(json, type)
     }
 
-    operator fun <T> get(path: String, type: Type, entityCallback: EntityCallback<T>) {
+    fun <T> get(path: String, type: Type, entityCallback: EntityCallback<T>) {
         val request = Request.Builder()
                 .url("https://api.hencoder.com/$path")
                 .build()
@@ -30,8 +30,7 @@ class HttpClient : OkHttpClient() {
 
             @Suppress("UNCHECKED_CAST")
             override fun onResponse(call: Call, response: Response) {
-                val code = response.code()
-                when (code) {
+                when (response.code()) {
                     in 200..299 -> {
                         val body = response.body()
                         var json: String? = null
