@@ -5,12 +5,7 @@ import okhttp3.*
 import java.io.IOException
 import java.lang.reflect.Type
 
-class HttpClient : OkHttpClient() {
-    companion object {
-        val INSTANCE by lazy {
-            HttpClient()
-        }
-    }
+object HttpClient : OkHttpClient() {
 
     private val gson = Gson()
 
@@ -22,7 +17,7 @@ class HttpClient : OkHttpClient() {
         val request = Request.Builder()
                 .url("https://api.hencoder.com/$path")
                 .build()
-        val call = INSTANCE.newCall(request)
+        val call = newCall(request)
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 entityCallback.onFailure("网络异常")

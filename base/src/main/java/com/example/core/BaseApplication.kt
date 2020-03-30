@@ -14,6 +14,5 @@ class BaseApplication: Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         currentApplication = this
-        HttpClient.INSTANCE
     }
 }

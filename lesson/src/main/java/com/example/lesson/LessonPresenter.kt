@@ -16,7 +16,7 @@ class LessonPresenter(var activity: LessonActivity?) {
     private val type = object : TypeToken<List<Lesson?>?>() {}.type
 
     fun fetchData() {
-        HttpClient.INSTANCE.get(this.LESSON_PATH, type, object : EntityCallback<MutableList<Lesson>> {
+        HttpClient.get(this.LESSON_PATH, type, object : EntityCallback<MutableList<Lesson>> {
             override fun onSuccess(lessons: MutableList<Lesson>) {
                 this@LessonPresenter.lessons = lessons
                 activity!!.runOnUiThread { activity!!.showResult(lessons) }
