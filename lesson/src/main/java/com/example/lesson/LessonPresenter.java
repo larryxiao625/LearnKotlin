@@ -1,8 +1,8 @@
 package com.example.lesson;
 
-import com.example.core.utils.Utils;
 import com.example.core.http.EntityCallback;
 import com.example.core.http.HttpClient;
+import com.example.core.utils.Utils;
 import com.example.lesson.entity.Lesson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,7 +29,8 @@ class LessonPresenter {
     }.getType();
 
     void fetchData() {
-        HttpClient.INSTANCE.get(LESSON_PATH, type, new EntityCallback<List<Lesson>>() {
+        HttpClient.Companion.getINSTANCE()
+        HttpClient.get(LESSON_PATH, type, new EntityCallback<List<Lesson>>() {
             @Override
             public void onSuccess(@NonNull final List<Lesson> lessons) {
                 LessonPresenter.this.lessons = lessons;
@@ -46,7 +47,7 @@ class LessonPresenter {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Utils.toast(message);
+                        Utils.INSTANCE.toast(message);
                     }
                 });
             }
