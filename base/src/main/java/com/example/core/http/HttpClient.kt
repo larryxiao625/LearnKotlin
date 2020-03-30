@@ -28,8 +28,7 @@ object HttpClient : OkHttpClient() {
                 when (response.code()) {
                     in 200..299 -> {
                         val body = response.body()
-                        var json: String? = null
-                        json = body?.string()
+                        val json: String? = body?.string()
                         entityCallback.onSuccess(convert<Any>(json, type) as T)
                     }
                     in 400..499 -> entityCallback.onFailure("客户端错误")

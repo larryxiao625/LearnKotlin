@@ -17,9 +17,9 @@ class LessonPresenter(var activity: LessonActivity?) {
 
     fun fetchData() {
         HttpClient.get(this.LESSON_PATH, type, object : EntityCallback<MutableList<Lesson>> {
-            override fun onSuccess(lessons: MutableList<Lesson>) {
-                this@LessonPresenter.lessons = lessons
-                activity!!.runOnUiThread { activity!!.showResult(lessons) }
+            override fun onSuccess(entity: MutableList<Lesson>) {
+                this@LessonPresenter.lessons = entity
+                activity!!.runOnUiThread { activity!!.showResult(entity) }
             }
 
             override fun onFailure(message: String?) {
